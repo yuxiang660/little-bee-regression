@@ -1,5 +1,5 @@
 run:
-	@python main.py
+	@python3.8 main.py
 
 test:
-	@python -m tests.sequencer_tests -v
+	@python3.8 -m tests.command_tests -v
