@@ -29,21 +29,20 @@ class CommandTestSuite(unittest.TestCase):
         assert runtime == command.Command.TIMEOUT
 
     def test_cmd_run_twice(self):
-        cmd = command.Command('cd mock && make clean', log_file)
+        cmd_str = 'cd mock && ls'
+        cmd = command.Command(cmd_str, log_file)
         runtime = cmd.run()
-        print("First time 'cd mock && make clean' command runs {:.3f} seconds".format(
-            runtime))
+        print("First time '{}' command runs {:.3f} seconds".format(cmd_str, runtime))
         assert runtime != 0
-        cmd = command.Command('cd mock && make clean', log_file)
+        cmd = command.Command(cmd_str, log_file)
         runtime = cmd.run()
-        print("Second time 'cd mock && make clean' command runs {:.3f} seconds".format(
-            runtime))
+        print("Second time '{}' command runs {:.3f} seconds".format(cmd_str, runtime))
         assert runtime != 0
 
 
 class CommandMockTestSuite(unittest.TestCase):
-    param_list = ['cd mock && make clean',
-                  'cd mock && make regcompile', 'cd mock && make regrun']
+    param_list = ['cd mock && make regcompile',
+                  'cd mock && make regrun', 'cd mock && make clean']
 
     @classmethod
     def setUpClass(cls):

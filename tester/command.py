@@ -1,6 +1,7 @@
 import subprocess
 import time
 import logging
+import os
 
 
 class Command:
@@ -12,6 +13,8 @@ class Command:
         self._log_file = log_file
 
     def run(self, timeout_s=None):
+        assert os.path.exists(os.path.dirname(self._log_file))
+
         with open(self._log_file, 'a') as f:
             start_log = f">>> Start command '{self._cmd}' <<<"
             f.write(start_log + '\n')
