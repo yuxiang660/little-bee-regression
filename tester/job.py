@@ -4,7 +4,7 @@ import os
 from datetime import datetime
 
 
-class Runner:
+class Job:
     REG_SETUP_FILE = 'reg.setup.tmp'
     ORIGIN_SETUP_FILE = 'setup.sh'
 
