@@ -19,7 +19,7 @@ class Job:
 
         logging.info(
             f">>> Start test '{self._name}' in '{self._dir}' folder, see the log in '{self._log_file}' <<<")
-        with open(self._log_file, 'a') as f:
+        with open(self._log_file, 'w') as f:
             f.write(
                 f"--- Start test '{self._name}' in '{self._dir}' folder at '{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}' ---\n\n")
 
