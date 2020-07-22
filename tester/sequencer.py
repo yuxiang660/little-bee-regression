@@ -23,7 +23,7 @@ class Sequencer:
             run_time = job.get_runtime()
             logging.info("### End test '{}' in {:.3f} seconds ###".format(
                 job_name, run_time))
-    
+
     def log(self, log_file):
         assert os.path.exists(os.path.dirname(log_file))
         with open(log_file, 'w') as f:
