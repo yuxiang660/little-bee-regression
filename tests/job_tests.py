@@ -6,8 +6,6 @@ import os
 
 logging.basicConfig(level=logging.DEBUG,
                     format='%(levelname)s - %(asctime)s - %(message)s')
-
-
 job_name = 'JobUnitTests'
 mock_dir = './mock'
 log_file = './output/job_tests.log'
@@ -26,17 +24,15 @@ class JobTestSuite(unittest.TestCase):
     def test_job_compile(self):
         configs = ['echo "set up compile environment1"',
                    'echo "set up compile environment2"']
-        runtime = self.r.compile(configs)
-        print("Job 'compile' runs {:.3f} seconds".format(runtime))
-        assert runtime != 0
+        self.r.compile(configs)
 
     def test_job_run(self):
         configs = ['echo "set up run environment1"',
                    'echo "set up run environment2"']
-        runtime = self.r.run(configs)
-        print("Job 'run' runs {:.3f} seconds".format(runtime))
-        assert runtime != 0
+        self.r.run(configs)
 
+    def test_job_runtime(self):
+        print("Total runtime of job '{}' is {:.3f} seconds".format(job_name, self.r.runtime))
 
 def main():
     unittest.main()
