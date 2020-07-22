@@ -1,0 +1,1 @@
+echo "compile mock test2"
