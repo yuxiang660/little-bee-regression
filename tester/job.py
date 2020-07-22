@@ -15,7 +15,9 @@ class Job:
         self._name = name
         self._dir = dir
         self._log_file = log_file
-        self._runtime = 0
+        self._clean_time = 0
+        self._compile_time = 0
+        self._run_time = 0
 
         logging.info(
             f">>> Start test '{self._name}' in '{self._dir}' folder, see the log in '{self._log_file}' <<<")
@@ -26,23 +28,24 @@ class Job:
     def clean(self):
         clean_cmd = f'cd {self._dir} && make clean'
         cmd = command.Command(clean_cmd, self._log_file)
-        self._runtime += cmd.run()
+        self._clean_time = cmd.run()
 
     def compile(self, configs):
         self.__setup(configs)
         compile_cmd = f'cd {self._dir} && make regcompile'
         cmd = command.Command(compile_cmd, self._log_file)
-        self._runtime += cmd.run()
+        self._compile_time = cmd.run()
 
     def run(self, configs, timeout=None):
         self.__setup(configs)
         run_cmd = f'cd {self._dir} && make regrun'
         cmd = command.Command(run_cmd, self._log_file)
-        self._runtime += cmd.run(timeout)
+        self._run_time = cmd.run(timeout)
 
-    @property
-    def runtime(self):
-        return self._runtime
+    def get_runtime(self):
+        if self._run_time != command.Command.TIMEOUT:
+            return self._clean_time + self._compile_time + self._run_time
+        return command.Command.TIMEOUT
 
     def __setup(self, configs):
         dest_file = f'{self._dir}/{self.REG_SETUP_FILE}'
