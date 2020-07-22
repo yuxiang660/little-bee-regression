@@ -1,4 +1,4 @@
-from . import command
+from .command import Command
 import logging
 import os
 from datetime import datetime
@@ -27,25 +27,25 @@ class Job:
 
     def clean(self):
         clean_cmd = f'cd {self._dir} && make clean'
-        cmd = command.Command(clean_cmd, self._log_file)
+        cmd = Command(clean_cmd, self._log_file)
         self._clean_time = cmd.run()
 
     def compile(self, configs):
         self.__setup(configs)
         compile_cmd = f'cd {self._dir} && make regcompile'
-        cmd = command.Command(compile_cmd, self._log_file)
+        cmd = Command(compile_cmd, self._log_file)
         self._compile_time = cmd.run()
 
     def run(self, configs, timeout=None):
         self.__setup(configs)
         run_cmd = f'cd {self._dir} && make regrun'
-        cmd = command.Command(run_cmd, self._log_file)
+        cmd = Command(run_cmd, self._log_file)
         self._run_time = cmd.run(timeout)
 
     def get_runtime(self):
-        if self._run_time != command.Command.TIMEOUT:
+        if self._run_time != Command.TIMEOUT:
             return self._clean_time + self._compile_time + self._run_time
-        return command.Command.TIMEOUT
+        return Command.TIMEOUT
 
     def __setup(self, configs):
         dest_file = f'{self._dir}/{self.REG_SETUP_FILE}'

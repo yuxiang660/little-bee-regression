@@ -1,4 +1,4 @@
-from . import job
+from .job import Job
 import os
 import logging
 

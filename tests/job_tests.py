@@ -1,5 +1,5 @@
 from . import context
-from tester import job
+from tester import Job
 import unittest
 import logging
 import os
@@ -12,7 +12,7 @@ log_file = './output/job_tests.log'
 
 
 class JobTestSuite(unittest.TestCase):
-    j = job.Job(job_name, mock_dir, log_file)
+    j = Job(job_name, mock_dir, log_file)
 
     @classmethod
     def setUpClass(cls):
