@@ -20,10 +20,10 @@ class Job:
         self._run_time = 0
 
         logging.info(
-            f">>> Start test '{self._name}' in '{self._dir}' folder, see the log in '{self._log_file}' <<<")
+            f"--- Test '{self._name}' in '{self._dir}' folder, see the log in '{self._log_file}' ---")
         with open(self._log_file, 'w') as f:
             f.write(
-                f"--- Start test '{self._name}' in '{self._dir}' folder at '{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}' ---\n\n")
+                f"--- Test '{self._name}' in '{self._dir}' folder at '{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}' ---\n\n")
 
     def clean(self):
         clean_cmd = f'cd {self._dir} && make clean'

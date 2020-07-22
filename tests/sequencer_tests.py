@@ -9,14 +9,16 @@ test_root_path = './mock'
 test_names = ["test1", "test2"]
 log_dir = './output'
 
-class SequencerTestSuite(unittest.TestCase):
-    """Sequencer test cases."""
 
-    def test_constructor(self):
-        Sequencer(test_root_path, test_names, log_dir)
+class SequencerTestSuite(unittest.TestCase):
+    def test_sequencer_run(self):
+        seq = Sequencer(test_root_path, test_names, log_dir)
+        seq.run()
+
 
 def main():
     unittest.main()
+
 
 if __name__ == '__main__':
     main()
