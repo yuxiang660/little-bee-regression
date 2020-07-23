@@ -15,7 +15,6 @@ class Job:
         self._name = name
         self._dir = dir
         self._log_file = log_file
-        self._clean_time = 0
         self._compile_time = 0
         self._run_time = 0
 
@@ -25,12 +24,8 @@ class Job:
             f.write(
                 f"--- Test '{self._name}' in '{self._dir}' folder at '{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}' ---\n\n")
 
-    def clean(self):
-        clean_cmd = f'cd {self._dir} && make clean'
-        cmd = Command(clean_cmd, self._log_file)
-        self._clean_time = cmd.run()
-
     def compile(self, configs):
+        self.__clean()
         self.__setup(configs)
         compile_cmd = f'cd {self._dir} && make regcompile'
         cmd = Command(compile_cmd, self._log_file)
@@ -44,8 +39,13 @@ class Job:
 
     def get_runtime(self):
         if self._run_time != Command.TIMEOUT:
-            return self._clean_time + self._compile_time + self._run_time
+            return self._compile_time + self._run_time
         return Command.TIMEOUT
+
+    def __clean(self):
+        clean_cmd = f'cd {self._dir} && make clean'
+        cmd = Command(clean_cmd, self._log_file)
+        cmd.run()
 
     def __setup(self, configs):
         dest_file = f'{self._dir}/{self.REG_SETUP_FILE}'

@@ -18,9 +18,6 @@ class JobTestSuite(unittest.TestCase):
     def setUpClass(cls):
         os.makedirs(os.path.dirname(log_file), exist_ok=True)
 
-    def test_job_clean(self):
-        self.j.clean()
-
     def test_job_compile(self):
         configs = ['echo "set up compile environment1"',
                    'echo "set up compile environment2"']
