@@ -1,3 +1,3 @@
 from .command import Command
 from .job import Job
-from .sequencer import Sequencer
+from .serial_tester import SerialTester

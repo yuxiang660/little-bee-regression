@@ -1,5 +1,5 @@
 from . import context
-from tester import Sequencer
+from tester import SerialTester
 import logging
 import unittest
 
@@ -14,9 +14,9 @@ run_configs = ['echo "set up run environment1"', 'echo "set up run environment2"
 
 class SequencerTestSuite(unittest.TestCase):
     def test_sequencer_run(self):
-        seq = Sequencer(test_root_path, test_names, log_dir)
-        seq.run(compile_configs, run_configs)
-        seq.log(regression_log)
+        s = SerialTester(test_root_path, test_names, log_dir)
+        s.run(compile_configs, run_configs)
+        s.log(regression_log)
 
 
 def main():

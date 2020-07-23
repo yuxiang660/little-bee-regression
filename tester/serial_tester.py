@@ -3,7 +3,7 @@ import os
 import logging
 
 
-class Sequencer:
+class SerialTester:
     def __init__(self, test_root_path, test_names, log_dir):
         os.makedirs(log_dir, exist_ok=True)
         self._jobs = {}
