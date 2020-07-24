@@ -4,8 +4,14 @@
         "test2"
     ],
     "env": {
-        "path": ["/path1", "/path2"],
-        "custom": ["echo \"set up environment1\"", "echo \"set up environment2\""]
+        "path": [
+            "/path1",
+            "/path2"
+        ],
+        "custom": [
+            "echo \"set up environment1\"",
+            "echo \"set up environment2\""
+        ]
     },
     "test_root": "./mock",
     "test_result_root": "./output",
