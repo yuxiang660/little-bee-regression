@@ -16,12 +16,12 @@ class SerialTester:
             self._jobs[test_name] = Job(test_name, test_dir, log_file)
             self._job_log_files[test_name] = log_file
 
-    def run(self, compile_configs, run_configs):
+    def run(self, configs):
         for job_name, job in self._jobs.items():
             logging.info(f"### Start compile test '{job_name}' ###")
-            job.compile(compile_configs)
+            job.compile(configs)
             logging.info(f"### Start running test '{job_name}' ###")
-            job.run(run_configs)
+            job.run(configs)
             runtime = job.get_runtime()
             self._job_run_times[job_name] = runtime
             logging.info("### End test '{}' in {:.3f} seconds ###".format(

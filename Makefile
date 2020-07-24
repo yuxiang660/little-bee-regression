@@ -1,3 +1,8 @@
+.PHONY: clean run test
+
+clean:
+	rm -rf output
+
 run:
 	@python3.8 main.py
 
