@@ -23,7 +23,7 @@ class SerialTester:
             logging.info("### End test '{}' in {:.3f} seconds ###".format(
                 job_name, job.get_runtime()))
 
-    def log(self, log_file):
-        os.makedirs(os.path.dirname(log_file), exist_ok=True)
-        with open(log_file, 'w') as f:
+    def log(self, output_file):
+        os.makedirs(os.path.dirname(output_file), exist_ok=True)
+        with open(output_file, 'w') as f:
             f.write("Regression Test Results:\n")
