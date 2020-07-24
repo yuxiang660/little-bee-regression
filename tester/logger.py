@@ -28,7 +28,7 @@ class Logger:
         for test_name, test_log_file in self._test_results.items():
             log = {}
             log[self.TEST_RESULT_KEY] = os.path.abspath(test_log_file)
-            log[self.TEST_RUNTIME_KEY] = self._test_run_times[test_name]
+            log[self.TEST_RUNTIME_KEY] = round(self._test_run_times[test_name], 2)
             log[self.TEST_PASS_KEY] = self.__parse(test_log_file)
             output[test_name] = log
 

@@ -1,4 +1,5 @@
 from .job import Job
+from .logger import Logger
 import os
 import logging
 
@@ -8,6 +9,7 @@ class SerialTester:
         os.makedirs(log_dir, exist_ok=True)
         self._jobs = {}
         self._job_log_files = {}
+        self._job_run_times = {}
         for test_name in test_names:
             test_dir = test_root_path + f'/{test_name}'
             log_file = log_dir + f'/{test_name}.log'
@@ -20,10 +22,12 @@ class SerialTester:
             job.compile(compile_configs)
             logging.info(f"### Start running test '{job_name}' ###")
             job.run(run_configs)
+            runtime = job.get_runtime()
+            self._job_run_times[job_name] = runtime
             logging.info("### End test '{}' in {:.3f} seconds ###".format(
-                job_name, job.get_runtime()))
+                job_name, runtime))
 
     def log(self, output_file):
         os.makedirs(os.path.dirname(output_file), exist_ok=True)
-        with open(output_file, 'w') as f:
-            f.write("Regression Test Results:\n")
+        l = Logger(self._job_log_files, self._job_run_times)
+        l.log(output_file)
