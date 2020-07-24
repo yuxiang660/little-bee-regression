@@ -5,18 +5,19 @@ import unittest
 
 logging.basicConfig(level=logging.DEBUG,
                     format='%(levelname)s - %(asctime)s - %(message)s')
-test_root_path = './mock'
+
 test_names = ["test1", "test2"]
-log_dir = './output'
-regression_log = './output/regression.log'
+test_root = './mock'
+test_result_root = './output'
+log_file = './output/regression.log'
 configs = ['echo "set up environment1"', 'echo "set up environment2"']
 
 
 class SequencerTestSuite(unittest.TestCase):
     def test_sequencer_run(self):
-        s = SerialTester(test_root_path, test_names, log_dir)
+        s = SerialTester(test_names, test_root, test_result_root)
         s.run(configs)
-        s.log(regression_log)
+        s.log(log_file)
 
 
 def main():

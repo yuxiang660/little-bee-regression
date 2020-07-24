@@ -11,3 +11,4 @@ test:
 	@python3.8 -m tests.job_tests -v
 	@python3.8 -m tests.serial_tester_tests -v
 	@python3.8 -m tests.logger_tests -v
+	@python3.8 -m tests.config_tests -v
