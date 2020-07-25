@@ -12,7 +12,7 @@ class ConfigTestSuite(unittest.TestCase):
         print(c.get_test_root())
         print(c.get_test_result_root())
         print(c.get_log_file_path())
-        print(c.get_configs())
+        print(c.get_env_configs())
 
 def main():
     unittest.main()

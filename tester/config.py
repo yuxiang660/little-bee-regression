@@ -33,7 +33,7 @@ class Config:
     def get_log_file_path(self):
         return self._log_file
 
-    def get_configs(self):
+    def get_env_configs(self):
         configs = []
         for path in self._env_path:
             configs.append(f'setenv PATH {path}:$PATH')
