@@ -1,5 +1,5 @@
 from . import context
-from tester import SerialTester, Config
+from tester import ParallelTester, Config
 import logging
 import unittest
 
@@ -8,11 +8,11 @@ logging.basicConfig(level=logging.DEBUG, format='%(levelname)s - %(asctime)s - %
 config_file = "config.json"
 
 
-class SerialTesterTestSuite(unittest.TestCase):
-    def test_serial_tester_run(self):
-        s = SerialTester(Config(config_file))
-        s.one_click_run()
-        s.log()
+class ParallelTesterTestSuite(unittest.TestCase):
+    def test_parallel_tester_run(self):
+        p = ParallelTester(Config(config_file))
+        p.one_click_run()
+        p.log()
 
 
 def main():
