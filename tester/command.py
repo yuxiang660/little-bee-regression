@@ -37,8 +37,7 @@ class Command:
                 return self.TIMEOUT
             else:
                 elapsed = time.time() - start
-                end_log = ">>> End command '{}' in {:.3f} seconds <<<".format(
-                    self._cmd, elapsed)
+                end_log = ">>> End command '{}' in {:.3f} seconds <<<".format(self._cmd, elapsed)
                 f.write(end_log + '\n\n')
                 logging.info(end_log)
         return elapsed

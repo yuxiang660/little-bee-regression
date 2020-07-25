@@ -4,8 +4,7 @@ import os
 import logging
 import unittest
 
-logging.basicConfig(level=logging.DEBUG,
-                    format='%(levelname)s - %(asctime)s - %(message)s')
+logging.basicConfig(level=logging.DEBUG, format='%(levelname)s - %(asctime)s - %(message)s')
 log_file = 'output/command_tests.log'
 
 
@@ -41,8 +40,7 @@ class CommandTestSuite(unittest.TestCase):
 
 
 class CommandMockTestSuite(unittest.TestCase):
-    param_list = ['cd mock && make regcompile',
-                  'cd mock && make regrun', 'cd mock && make clean']
+    param_list = ['cd mock && make regcompile', 'cd mock && make regrun', 'cd mock && make clean']
 
     @classmethod
     def setUpClass(cls):

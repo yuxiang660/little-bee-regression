@@ -30,13 +30,11 @@ class SerialTester:
             logging.info(f"### Run test '{job_name}' ###")
             job.run(self._configs.get_timeout())
             runtime = job.get_runtime()
-            logging.info(
-                "### End test '{}' in {:.3f} seconds ###".format(job_name, runtime))
+            logging.info("### End test '{}' in {:.3f} seconds ###".format(job_name, runtime))
 
             self._job_run_times[job_name] = runtime
 
     def log(self):
-        os.makedirs(os.path.dirname(
-            self._configs.get_log_file_path()), exist_ok=True)
+        os.makedirs(os.path.dirname(self._configs.get_log_file_path()), exist_ok=True)
         l = Logger(self._job_result_files, self._job_run_times)
         l.log(self._configs.get_log_file_path())

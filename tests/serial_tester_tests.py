@@ -3,10 +3,10 @@ from tester import SerialTester, Config
 import logging
 import unittest
 
-logging.basicConfig(level=logging.DEBUG,
-                    format='%(levelname)s - %(asctime)s - %(message)s')
+logging.basicConfig(level=logging.DEBUG, format='%(levelname)s - %(asctime)s - %(message)s')
 
 config_file = "config.json"
+
 
 class SequencerTestSuite(unittest.TestCase):
     def test_sequencer_run(self):
