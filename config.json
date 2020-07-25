@@ -5,6 +5,7 @@
     ],
     "env": {
         "path": [],
+        "emulator": "",
         "custom": [
             "echo \"set up environment1\"",
             "echo \"set up environment2\""
@@ -13,6 +14,5 @@
     "test_root": "./mock",
     "test_result_root": "./output",
     "log_file": "./output/reg.json.log",
-    "emulator": "",
     "timeout": -1
 }

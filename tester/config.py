@@ -20,11 +20,11 @@ class Config:
             data = json.load(f)
         self._case_list = data[self.CASE_LIST_KEY]
         self._env_path = data[self.ENV_KEY][self.ENV_PATH_KEY]
+        self._env_emulator = data[self.ENV_KEY][self.EMULATOR_KEY]
         self._env_custom = data[self.ENV_KEY][self.ENV_CUSTOM_KEY]
         self._test_root = data[self.TEST_ROOT_KEY]
         self._test_result_root = data[self.TEST_RESULT_ROOT_KEY]
         self._log_file = data[self.LOG_FILE_KEY]
-        self._emulator = data[self.EMULATOR_KEY]
         self._timeout = data[self.TIMEOUT_KEY]
 
     def get_test_names(self):
@@ -48,6 +48,6 @@ class Config:
             configs.append(f'setenv PATH {path}:$PATH')
         for custom in self._env_custom:
             configs.append(custom)
-        if self._emulator.strip():
-            configs.append(f'setenv EMULATOR {self._emulator}')
+        if self._env_emulator.strip():
+            configs.append(f'setenv EMULATOR {self._env_emulator.strip()}')
         return configs
