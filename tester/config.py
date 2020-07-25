@@ -48,5 +48,6 @@ class Config:
             configs.append(f'setenv PATH {path}:$PATH')
         for custom in self._env_custom:
             configs.append(custom)
-        configs.append(f'setenv EMULATOR {self._emulator}')
+        if self._emulator.strip():
+            configs.append(f'setenv EMULATOR {self._emulator}')
         return configs

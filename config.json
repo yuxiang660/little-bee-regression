@@ -4,10 +4,7 @@
         "test2"
     ],
     "env": {
-        "path": [
-            "/path1",
-            "/path2"
-        ],
+        "path": [],
         "custom": [
             "echo \"set up environment1\"",
             "echo \"set up environment2\""
@@ -16,6 +13,6 @@
     "test_root": "./mock",
     "test_result_root": "./output",
     "log_file": "./output/reg.json.log",
-    "emulator": "hsv-sc116",
+    "emulator": "",
     "timeout": -1
 }
