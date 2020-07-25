@@ -15,5 +15,7 @@
     },
     "test_root": "./mock",
     "test_result_root": "./output",
-    "log_file": "./output/reg.json.log"
+    "log_file": "./output/reg.json.log",
+    "emulator": "hsv-sc116",
+    "timeout": -1
 }
