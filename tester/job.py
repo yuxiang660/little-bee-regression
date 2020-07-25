@@ -24,30 +24,9 @@ class Job:
             f.write(
                 f"--- Test '{self._name}' in '{self._dir}' folder at '{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}' ---\n\n")
 
-    def compile(self, configs):
+    def setup(self, configs):
         self.__clean()
-        self.__setup(configs)
-        compile_cmd = f'cd {self._dir} && make regcompile'
-        cmd = Command(compile_cmd, self._log_file)
-        self._compile_time = cmd.run()
 
-    def run(self, configs, timeout=None):
-        self.__setup(configs)
-        run_cmd = f'cd {self._dir} && make regrun'
-        cmd = Command(run_cmd, self._log_file)
-        self._run_time = cmd.run(timeout)
-
-    def get_runtime(self):
-        if self._run_time != Command.TIMEOUT:
-            return self._compile_time + self._run_time
-        return Command.TIMEOUT
-
-    def __clean(self):
-        clean_cmd = f'cd {self._dir} && make clean'
-        cmd = Command(clean_cmd, self._log_file)
-        cmd.run()
-
-    def __setup(self, configs):
         dest_file = f'{self._dir}/{self.REG_SETUP_FILE}'
         src_file = f'{self._dir}/{self.ORIGIN_SETUP_FILE}'
 
@@ -61,3 +40,23 @@ class Job:
                     dest.write(line + '\n')
             for config in configs:
                 dest.write(config + '\n')
+
+    def compile(self):
+        compile_cmd = f'cd {self._dir} && make regcompile'
+        cmd = Command(compile_cmd, self._log_file)
+        self._compile_time = cmd.run()
+
+    def run(self, timeout=None):
+        run_cmd = f'cd {self._dir} && make regrun'
+        cmd = Command(run_cmd, self._log_file)
+        self._run_time = cmd.run(timeout)
+
+    def get_runtime(self):
+        if self._run_time != Command.TIMEOUT:
+            return self._compile_time + self._run_time
+        return Command.TIMEOUT
+
+    def __clean(self):
+        clean_cmd = f'cd {self._dir} && make clean'
+        cmd = Command(clean_cmd, self._log_file)
+        cmd.run()

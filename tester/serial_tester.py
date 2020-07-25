@@ -20,10 +20,12 @@ class SerialTester:
 
     def one_click_run(self):
         for job_name, job in self._jobs.items():
-            logging.info(f"### Start compile test '{job_name}' ###")
-            job.compile(self._job_env_configs)
-            logging.info(f"### Start running test '{job_name}' ###")
-            job.run(self._job_env_configs)
+            logging.info(f"### Setup test '{job_name}' ###")
+            job.setup(self._job_env_configs)
+            logging.info(f"### Compile test '{job_name}' ###")
+            job.compile()
+            logging.info(f"### Run test '{job_name}' ###")
+            job.run()
             runtime = job.get_runtime()
             self._job_run_times[job_name] = runtime
             logging.info("### End test '{}' in {:.3f} seconds ###".format(
