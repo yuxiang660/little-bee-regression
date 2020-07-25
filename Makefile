@@ -4,7 +4,7 @@ clean:
 	rm -rf output
 
 run:
-	@python3.8 main.py
+	@python3.8 main.py config.json
 
 test:
 	@python3.8 -m tests.command_tests -v
