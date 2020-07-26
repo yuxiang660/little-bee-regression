@@ -1,4 +1,4 @@
-from tester import SerialTester, Config
+from tester import SerialTester, ParallelTester, Config
 import argparse
 import logging
 
@@ -11,6 +11,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    t = SerialTester(Config(args.config_file))
+    #t = SerialTester(Config(args.config_file))
+    t = ParallelTester(Config(args.config_file))
     t.one_click_run()
     t.log()
