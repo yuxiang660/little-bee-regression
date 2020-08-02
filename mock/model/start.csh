@@ -1,10 +1,12 @@
+#!/bin/csh
+
 echo 'start model'
 sleep 5
+mkdir -p data
 echo 'TCP HOST:hsv-sc21 PORT:8085' > data/socket_port.info
-n=1
-while [ $n -le 10 ]
-do
+set i=1
+while ($i < 10)
     cat data/socket_port.info
     sleep 3
-    n=$(( n+1 ))
-done
+    @ i++
+end

@@ -14,13 +14,12 @@ class Model:
         start_log = f"--- Begin to start model at '{self._model_path}', see the log in '{self._log_file}' ---"
         logging.info(start_log)
         with open(self._log_file, 'w') as f:
-            f.write(start_log + "\n\n")
+            f.write(start_log + "\n")
 
-    def start(self, timeout_s):
+    def start(self, cmd, timeout_s):
         if os.path.exists(self._socket_file):
             os.remove(self._socket_file)
-
-        start_model_cmd = f'cd {self._model_path} && start.sh'
+        start_model_cmd = f'cd {self._model_path} && {cmd}'
         self._cmd = Command(start_model_cmd, self._log_file)
 
         start_time = time.time()
@@ -34,5 +33,8 @@ class Model:
 
     def stop(self):
         if self._cmd is not None:
-            logging.info(f"--- Stop model at '{self._model_path}', see the log in '{self._log_file}' ---")
             self._cmd.kill()
+            stop_log = f"--- Stop model at '{self._model_path}', see the log in '{self._log_file}' ---"
+            logging.info(stop_log)
+            with open(self._log_file, 'a') as f:
+                f.write(stop_log + "\n\n")
