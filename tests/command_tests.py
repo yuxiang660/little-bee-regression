@@ -3,6 +3,8 @@ from tester import Command
 import os
 import logging
 import unittest
+import time
+
 
 logging.basicConfig(level=logging.DEBUG, format='%(levelname)s - %(asctime)s - %(message)s')
 log_file = 'output/command_tests.log'
@@ -38,6 +40,10 @@ class CommandTestSuite(unittest.TestCase):
         print("Second time '{}' command runs {:.3f} seconds".format(cmd_str, runtime))
         assert runtime != 0
 
+    def test_cmd_kill(self):
+        cmd = Command('sleep 100', log_file)
+        time.sleep(1)
+        cmd.kill()
 
 class CommandMockTestSuite(unittest.TestCase):
     param_list = ['cd mock && make regcompile', 'cd mock && make regrun', 'cd mock && make clean']

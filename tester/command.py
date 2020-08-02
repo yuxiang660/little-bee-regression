@@ -2,6 +2,7 @@ import subprocess
 import time
 import logging
 import os
+import psutil
 
 
 class Command:
@@ -30,6 +31,7 @@ class Command:
             try:
                 self._proc.communicate(None, timeout_s)
             except subprocess.TimeoutExpired as e:
+                self.kill()
                 err_log = f">>> End command '{self._cmd}' with timeout error: {e.__str__()} <<<"
                 f.write(err_log + '\n\n')
                 logging.error(err_log)
@@ -40,3 +42,18 @@ class Command:
                 f.write(end_log + '\n\n')
                 logging.info(end_log)
                 return elapsed
+
+    def kill(self):
+        process = psutil.Process(self._proc.pid)
+
+        with open(self._log_file, 'a') as f:
+            for child in process.children(recursive=True):
+                kill_log = f">>> Kill command '{self._cmd}' child process '{child.pid}' - '{child.name()}' <<<"
+                f.write(kill_log + '\n')
+                logging.info(kill_log)
+                child.kill()
+
+            kill_log = f">>> Kill command '{self._cmd}' process '{process.pid}' - '{process.name()}' <<<"
+            f.write(kill_log + '\n')
+            logging.info(kill_log)
+            process.kill()
