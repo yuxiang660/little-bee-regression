@@ -17,8 +17,7 @@ class ModelTestSuite(unittest.TestCase):
 
     def test_model_start_stop(self):
         m = Model(model_dir, socket_file, log_file)
-        cmd = 'make'
-        m.start(cmd, 10)
+        m.start(10)
         m.stop()
 
 def main():

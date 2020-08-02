@@ -16,10 +16,12 @@ class Model:
         with open(self._log_file, 'w') as f:
             f.write(start_log + "\n")
 
-    def start(self, cmd, timeout_s):
+    def start(self, timeout_s):
+        # unset ssh folder permission before start model
+        # os.system('chmod 600 ~/.ssh')
         if os.path.exists(self._socket_file):
             os.remove(self._socket_file)
-        start_model_cmd = f'cd {self._model_path} && {cmd}'
+        start_model_cmd = f'cd {self._model_path} && make'
         self._cmd = Command(start_model_cmd, self._log_file)
 
         start_time = time.time()
@@ -38,3 +40,5 @@ class Model:
             logging.info(stop_log)
             with open(self._log_file, 'a') as f:
                 f.write(stop_log + "\n\n")
+        # recover ssh folder permission after stop model
+        # os.system('chmod 700 ~/.ssh')
