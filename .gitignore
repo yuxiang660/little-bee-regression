@@ -131,3 +131,6 @@ dmypy.json
 # output folder about log files
 output/
 *.tmp
+
+# model file
+socket_port.info
