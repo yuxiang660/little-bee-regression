@@ -17,24 +17,24 @@ class CommandTestSuite(unittest.TestCase):
 
     def test_ls_cmd(self):
         cmd = Command('ls', log_file)
-        runtime = cmd.run()
+        runtime = cmd.communicate()
         print("'ls' command runs {:.3f} seconds".format(runtime))
         assert runtime != 0
 
     def test_timeout_cmd(self):
         cmd = Command('sleep 2', log_file)
-        runtime = cmd.run(1)
+        runtime = cmd.communicate(1)
         print("'sleep 2' command with timeout error")
         assert runtime == Command.TIMEOUT
 
     def test_cmd_run_twice(self):
         cmd_str = 'cd mock && ls'
         cmd = Command(cmd_str, log_file)
-        runtime = cmd.run()
+        runtime = cmd.communicate()
         print("First time '{}' command runs {:.3f} seconds".format(cmd_str, runtime))
         assert runtime != 0
         cmd = Command(cmd_str, log_file)
-        runtime = cmd.run()
+        runtime = cmd.communicate()
         print("Second time '{}' command runs {:.3f} seconds".format(cmd_str, runtime))
         assert runtime != 0
 
@@ -51,7 +51,7 @@ class CommandMockTestSuite(unittest.TestCase):
         for p in self.param_list:
             with self.subTest(msg=f"Run command '{p}'"):
                 cmd = Command(p, log_file)
-                runtime = cmd.run()
+                runtime = cmd.communicate()
                 print("'{}' command runs {:.3f} seconds".format(p, runtime))
                 assert runtime != 0
 

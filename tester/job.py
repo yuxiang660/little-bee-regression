@@ -44,12 +44,12 @@ class Job:
     def compile(self):
         compile_cmd = f'cd {self._dir} && make regcompile'
         cmd = Command(compile_cmd, self._log_file)
-        self._compile_time = cmd.run()
+        self._compile_time = cmd.communicate()
 
     def run(self, timeout=None):
         run_cmd = f'cd {self._dir} && make regrun'
         cmd = Command(run_cmd, self._log_file)
-        self._run_time = cmd.run(timeout)
+        self._run_time = cmd.communicate(timeout)
 
     def get_runtime(self):
         if self._run_time != Command.TIMEOUT:
@@ -59,4 +59,4 @@ class Job:
     def __clean(self):
         clean_cmd = f'cd {self._dir} && make clean'
         cmd = Command(clean_cmd, self._log_file)
-        cmd.run()
+        cmd.communicate()
