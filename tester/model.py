@@ -2,6 +2,7 @@ from .command import Command
 import logging
 import os
 import time
+import re
 
 class Model:
     def __init__(self, model_path, socket_file, log_file):
@@ -42,3 +43,17 @@ class Model:
                 f.write(stop_log + "\n\n")
         # recover ssh folder permission after stop model
         # os.system('chmod 700 ~/.ssh')
+
+    def get_host(self):
+        assert os.path.exists(self._socket_file)
+        with open(self._socket_file, 'r') as f:
+            line = f.readline()
+        match_obj = re.match(r"TCP HOST:(.*) PORT:(\d*)", line, re.M)
+        return match_obj.group(1)
+
+    def get_port(self):
+        assert os.path.exists(self._socket_file)
+        with open(self._socket_file, 'r') as f:
+            line = f.readline()
+        match_obj = re.match(r"TCP HOST:(.*) PORT:(\d*)", line, re.M)
+        return match_obj.group(2)

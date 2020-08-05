@@ -18,6 +18,9 @@ class ModelTestSuite(unittest.TestCase):
     def test_model_start_stop(self):
         m = Model(model_dir, socket_file, log_file)
         m.start(10)
+        logging.info(f'model host: {m.get_host()}')
+        logging.info(f'model port: {m.get_port()}')
+        logging.info(f"setenv QT_ETNBCS_ARGS '-client -host sj-ap2-emul -emul_mode socket -ess {m.get_host()} -esp {m.get_port()}'")
         m.stop()
 
 def main():
