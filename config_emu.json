@@ -1,0 +1,29 @@
+{
+    "case_list": [
+        {
+            "model_dir": "./mock/model",
+            "socket_file": "data/socket_port.info",
+            "model_log_file": "./output/emu/model.log",
+            "model_timeout": 20,
+            "tests": ["test1"],
+            "test_log_file": "./output/emu/model.reg.json.log"
+        },
+        {
+            "model_dir": "./mock/model2",
+            "socket_file": "data/socket_port.info",
+            "model_log_file": "./output/emu/model2.log",
+            "model_timeout": 20,
+            "tests": [],
+            "test_log_file": "./output/emu/model2.reg.json.log"
+        }
+    ],
+    "env": {
+        "path": [],
+        "emulator": "mock-emul",
+        "custom": []
+    },
+    "test_root": "./mock",
+    "test_result_root": "./output/emu",
+    "log_file": "./output/emu/reg.emu.json.log",
+    "timeout": -1
+}

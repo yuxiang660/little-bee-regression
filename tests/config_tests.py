@@ -8,7 +8,7 @@ class ConfigTestSuite(unittest.TestCase):
 
     def test_config_get(self):
         c = Config(config_file)
-        print(c.get_test_names())
+        print(c.get_case_list())
         print(c.get_test_root())
         print(c.get_test_result_root())
         print(c.get_log_file_path())

@@ -24,4 +24,5 @@ linux_test:
 	# logger_tests depends on above tests
 	@/lan/cva/hsv-apfw/yuxiangw/common/bin/python3.8 -m tests.logger_tests -v
 	@/lan/cva/hsv-apfw/yuxiangw/common/bin/python3.8 -m tests.model_tests -v
+	@/lan/cva/hsv-apfw/yuxiangw/common/bin/python3.8 -m tests.model_config_tests -v
 

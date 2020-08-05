@@ -11,7 +11,7 @@ class Tester:
         self._jobs = {}
         self._job_result_files = {}
         self._job_run_times = {}
-        for test_name in configs.get_test_names():
+        for test_name in configs.get_case_list():
             test_dir = configs.get_test_root() + f'/{test_name}'
             test_result_file = configs.get_test_result_root() + f'/{test_name}.log'
             self._jobs[test_name] = Job(test_name, test_dir, test_result_file)

@@ -5,3 +5,4 @@ from .parallel_tester import ParallelTester
 from .logger import Logger
 from .config import Config
 from .model import Model
+from .model_config import ModelConfig

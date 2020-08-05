@@ -1,9 +1,9 @@
 #!/bin/csh
 
-echo 'start model'
+echo 'start model2'
 sleep 5
 mkdir -p data
-echo 'TCP HOST:model PORT:7777' > data/socket_port.info
+echo 'TCP HOST:model2 PORT:8888' > data/socket_port.info
 set i=1
 while ($i < 10)
     cat data/socket_port.info

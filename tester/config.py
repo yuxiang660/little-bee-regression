@@ -27,7 +27,7 @@ class Config:
         self._log_file = data[self.LOG_FILE_KEY]
         self._timeout = data[self.TIMEOUT_KEY]
 
-    def get_test_names(self):
+    def get_case_list(self):
         return self._case_list
 
     def get_test_root(self):
